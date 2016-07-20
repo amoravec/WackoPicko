@@ -19,15 +19,20 @@ function our_header($selected = "", $search_terms = "")
     <link rel="stylesheet" href="/css/bootstrap-theme.css" type="text/css">
     <link rel="stylesheet" href="/css/justified-nav.css" type="text/css">
 
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>    
     <script src="/js/bootstrap.js"></script>
-    
+
     <title><?php echo title()?></title>
   </head>
   <body>
     <div class="container" >
       <div class="masthead">
-        <h2 class="text-muted"><a href="/"><?php echo title()?></a></h2>
-
+        <div class="row">
+          <div class="col-md-1">&nbsp;</div>
+          <div class="col-md-10">
+            <h1 class="text-muted"><?php echo title()?></h1>
+          </div>
+	</div>
         <nav>
            <ul class="nav nav-justified">
 	    <li class="<?php if($selected == "home"){ echo 'active'; } ?>"><a href="/users/home.php"><span>Home</span></a></li>
@@ -75,13 +80,16 @@ function error_message()
 function our_footer()
 {
    ?>
-       <div class="column span-24 first last" id="footer" >
-	<ul>
-	  <li><a href="/">Home</a> |</li>
-          <li><a href="/admin/index.php?page=login">Admin</a> |</li>
+       <div>
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+          <div class="container">
+          <ul class="nav navbar-nav">
+	  <li><a href="/">Home</a></li>
+          <li><a href="/admin/index.php?page=login">Admin</a></li>
 	  <li><a href="/tos.php">Terms of Service</a></li>
-	</ul>
-      </div>
+          </ul>
+	</div>
+      </nav>
     </div>
   </body>
 </html>  

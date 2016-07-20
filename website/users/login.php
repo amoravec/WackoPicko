@@ -31,18 +31,26 @@ if ($bad_login)
    our_header();
 
    ?>
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<h2>Login</h2>
+<form action="<?=h( $_SERVER['PHP_SELF'] )?>" method="POST">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
 
-<div class="column prepend-1 span-23 first last">
-    <h2>Login</h2>
-    <?php error_message(); ?>
-    <table style="width:320px" cellspacing="0">
-      <form action="<?=h( $_SERVER['PHP_SELF'] )?>" method="POST">
-      <tr><td>Username :</td><td> <input type="text" name="username" /></td></tr>
-      <tr><td>Password :</td><td> <input type="password" name="password" /></td></tr>
-      <tr><td><input type="submit" value="login" /></td><td> <a href="/users/register.php">Register</a></td></tr>
-   </form>
- </table>
 </div>
+</div>
+</div>
+
    <?php
 
        our_footer();
