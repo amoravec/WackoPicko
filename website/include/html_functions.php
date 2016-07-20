@@ -14,46 +14,47 @@ function our_header($selected = "", $search_terms = "")
     <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
     <!--[if IE]><link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
     <link rel="stylesheet" href="/css/stylings.css" type="text/css" media="screen">
+
+    <link rel="stylesheet" href="/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.css" type="text/css">
+    <link rel="stylesheet" href="/css/justified-nav.css" type="text/css">
+
+    <script src="/js/bootstrap.js"></script>
     
     <title><?php echo title()?></title>
   </head>
   <body>
-    <div class="container " style="border: 2px solid #5c95cf;">
-      <div class="column span-24 first last">
-	<h1 id="title"><a href="/"><?php echo title()?></a></h1>
-      </div>
-      <div id="menu">
-	<div class="column prepend-1 span-14 first">
-	  <ul class="menu">
-	    <li class="<?php if($selected == "home"){ echo 'current'; } ?>"><a href="/users/home.php"><span>Home</span></a></li>
-	    <li class="<?php if($selected == "upload"){ echo 'current'; } ?>"><a href="/pictures/upload.php"><span>Upload</span></a></li>
-	    <li class="<?php if($selected == "recent"){ echo 'current'; } ?>"><a href="/pictures/recent.php"><span>Recent</span></a></li>
-            <li class="<?php if($selected == "guestbook"){ echo 'current'; } ?>"><a href="/guestbook.php"><span>Guestbook</span></a></li>
-      
-      <?php if (Users::is_logged_in()) { ?><li class="<?php if($selected == "cart"){ echo 'current'; } ?>"><a href="/cart/review.php"><span>Cart</span></a></li> <?php } ?>
-	  </ul>
-	</div>
-	<div class="column prepend-1 span-7 first last">
-	  <ul class="menu top_login" >
-      <?php if (Users::is_logged_in()){ ?>
-	    <li><a href="/users/logout.php"><Span>Logout</span></a></li>
+    <div class="container" >
+      <div class="masthead">
+        <h2 class="text-muted"><a href="/"><?php echo title()?></a></h2>
+
+        <nav>
+           <ul class="nav nav-justified">
+	    <li class="<?php if($selected == "home"){ echo 'active'; } ?>"><a href="/users/home.php"><span>Home</span></a></li>
+	    <li class="<?php if($selected == "upload"){ echo 'active'; } ?>"><a href="/pictures/upload.php"><span>Upload</span></a></li>
+	    <li class="<?php if($selected == "recent"){ echo 'active'; } ?>"><a href="/pictures/recent.php"><span>Recent</span></a></li>
+            <li class="<?php if($selected == "guestbook"){ echo 'active'; } ?>"><a href="/guestbook.php"><span>Guestbook</span></a></li>
+            <?php if (Users::is_logged_in()) { ?><li class="<?php if($selected == "cart"){ echo 'active'; } ?>"><a href="/cart/review.php"><span>Cart</span></a></li> <?php } ?>
+            <?php if (Users::is_logged_in()){ ?>
+            <li><a href="/users/logout.php"><Span>Logout</span></a></li>
       <?php } else { ?>
-	    <li><a href="/users/login.php"><Span>Login</span></a></li>
+            <li><a href="/users/login.php"><Span>Login</span></a></li>
       <?php } ?>
-	  </ul>
-	</div>
+            <li style="min-width: 220px">
+               <form class="navbar-form form-inline" action="/pictures/search.php" method="get">
+        	 <div class="input-group">
+                   <input id="query2" name="query" type="text" class="form-control" placeholder="Search" value="<?=h($search_terms) ?>"/>
+                 </div>
+                 <button type="submit" class="btn btn-default">Submit</button>
+               </form>
+            </li>
+          </ul>
+        </nav>
+
       </div>
       
       
       
-      <div class="column span-24 first last" id="search_bar_blue">
-	<div class="column prepend-17 span-7 first last" id="search_box">
-	  <form action="/pictures/search.php" method="get" style="display:inline;">
-	    <input id="query2" name="query" size="15" style="padding: 2px; font-size: 16px; text-decoration:none;border:none;vertical-align:middle;" type="text" value="<?=h($search_terms) ?>"/>
-	    <input src="/images/search_button_white.gif" type="image" style="border: 0pt none ; position: relative; top: 0px;vertical-align:middle;margin-left: 1em;" />
-	  </form>
-	</div>
-      </div>
    <?php
 }
 
