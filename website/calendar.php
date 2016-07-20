@@ -21,7 +21,7 @@ $next_time = $date + (24 * 60 * 60);
 
 
 <div class="column prepend-1 span-24 first last">
-  <h2>WackoPicko Calendar</h2>
+  <h2><?php echo title()?> Calendar</h2>
   <p>
    What is going on <?= $cur_text ?>?
   </p>

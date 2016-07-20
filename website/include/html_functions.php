@@ -14,12 +14,13 @@ function our_header($selected = "", $search_terms = "")
     <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
     <!--[if IE]><link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
     <link rel="stylesheet" href="/css/stylings.css" type="text/css" media="screen">
-    <title>WackoPicko.com</title>
+    
+    <title><?php echo title()?></title>
   </head>
   <body>
     <div class="container " style="border: 2px solid #5c95cf;">
       <div class="column span-24 first last">
-	<h1 id="title"><a href="/">WackoPicko.com</a></h1>
+	<h1 id="title"><a href="/"><?php echo title()?></a></h1>
       </div>
       <div id="menu">
 	<div class="column prepend-1 span-14 first">
@@ -77,7 +78,6 @@ function our_footer()
 	<ul>
 	  <li><a href="/">Home</a> |</li>
           <li><a href="/admin/index.php?page=login">Admin</a> |</li>
-	  <li><a href="mailto:contact@wackopicko.com">Contact</a> |</li>
 	  <li><a href="/tos.php">Terms of Service</a></li>
 	</ul>
       </div>
@@ -137,6 +137,10 @@ function high_quality_item_link($item)
    $name = h($_SERVER['SERVER_NAME']);
    $link = "http://{$name}/pictures/highquality.php?picid={$item['id']}&key=highquality";
    return "<a href='{$link}'>{$link}</a>"; 
+}
+
+function title() {
+   return "PhotoPlan";
 }
 
 
