@@ -15,9 +15,10 @@ if (!(isset($_GET['key']) && isset($_GET['picid'])))
 }
 
 $user = Users::current_user();
-$pic = Pictures::get_picture($picid);
+$pic = Pictures::get_picture($_GET['picid']);
+$filename = '../upload/' . $pic['filename'];
 
-if ($_GET['key'] != $pic['high_quality'])
+if ($_GET['key'] != 'high_quality')
 {
    error_404();
 }

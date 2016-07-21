@@ -39,25 +39,43 @@ if ($error)
 {
    our_header();
    ?>
-<div class="column prepend-1 span-24 first last" >
+
+<div class="container" >
+  <div class="col-md-11">
 <h2> Register for an account!</h2>
 <p>
 Protect yourself from hackers and <a href="/passcheck.php">check your password strength</a>
 </p>
 <?php error_message() ?>
-<table cellspacing="0" style="width:320px">
-  <form action="<?=h( $_SERVER['PHP_SELF'] )?>" method="POST">
-  <tr><td>Username :</td><td> <input type="text" name="username" /></td></tr>
-  <tr><td>First Name :</td><td> <input type="text" name="firstname" /></td></tr>
-  <tr><td>Last Name :</td><td> <input type="text" name="lastname" /></td></tr>
-  <tr><td>Password :</td><td> <input type="password" name="password" /></td></tr>
-  <tr><td>Password again :</td><td> <input type="password" name="againpass" /></td></tr>
-  <tr><td><input type="submit" value="Create Account!" /></td><td></td></tr>
-</form>
-</table>
+
+<form action="<?=h( $_SERVER['PHP_SELF'] )?>" method="POST">
+<div class="form-group">
+  <label for="username">Username:</label>
+  <input type="text" id="username" class="form-control" name="username" placeholder="username" />
 </div>
+<div class="form-group">
+  <label for="firstname">First Name :</label>
+  <input type="text" id="firstname" class="form-control"name="firstname" placeholder="First" />
+</div>
+<div class="form-group">
+  <label for="lastname">Last Name :</label>
+  <input type="text" id="lastname" class="form-control"name="lastname" placeholder="Last"/>
+</div>
+<div class="form-group">
+  <label for"password">Password :</label>
+  <input type="password" id="password" class="form-control" name="password" />
+</div>
+<div class="form-group">
+  <label for="againpass">Password again :</label>
+  <input type="password" id="againpass" class="form-control" name="againpass" />
+</div>
+<div class="form-group">
+  <button type="submit" class="btn btn-default">Create Account!</button>
+</div>
+</form>
 
-
+  </div>
+</div>
 
 <?php
      our_footer();

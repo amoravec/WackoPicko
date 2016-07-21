@@ -10,7 +10,7 @@ our_header();
 <div class="column prepend-1 span-22 first last">
 <h2>There was an error!</h2>
 
-   <p class="error" style="text-align:center;"><?=h( $message )?></p>
+   <p class="error" style="text-align:center;"><?= html_entity_decode( $message )?></p>
 
 </div>
 

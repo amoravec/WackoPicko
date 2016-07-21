@@ -33,9 +33,12 @@ $pictures = Pictures::get_all_pictures_by_user($_GET['userid']);
 
 
 <?php our_header(""); ?>
-<div class="column prepend-1 span-24 first last">
+
+<div class="container">
+  <div class="col-md-11">
+
    <?php if ($pictures) { ?>
-<h2>These are <?=h( $user['login'] )?>&#39;s Pictures: </h2>   
+<h2>These are <em><?=h( $user['login'] )?>&#39;s</em> Pictures: </h2>   
 
 <?php   thumbnail_pic_list($pictures); ?>
 
@@ -43,9 +46,10 @@ $pictures = Pictures::get_all_pictures_by_user($_GET['userid']);
 <?php
 }
 else { ?>
-   <h2><?=h( $user['login'] ) ?> doesn&#39;t have any pictures yet. </h2>
+   <h2><em><?=h( $user['login'] ) ?></em> doesn&#39;t have any pictures yet. </h2>
 <?php
 
       } ?>
-
+  </div>
+</div>
 <?php our_footer(); ?>

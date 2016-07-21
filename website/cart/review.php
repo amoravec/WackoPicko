@@ -21,19 +21,25 @@ if ($cart)
 }
 our_header("cart");
 ?>
-<div class="column prepend-1 span-22 first last">
+
+
+<div class="container">
+  <div class="col-md-12">
+
   <h2>Welcome to your cart <?= h( $user['login'] ) ?></h2>
   <form action="<?=h( Cart::$ACTION_URL . '?action=delete' ); ?>" method="POST">
 <?php if ($cart) { ?>
-  <table>
-    <tr>
+  <table class="table table-striped">
+    <thead>
       <th>Pic name</th> <th>Sample Pic</th> <th>Price</th> <th>Delete?</th>
-    </tr>
+    </thead>
+    <tbody>
     <?php foreach($items as $item) { ?>
     <tr>
       <td><?=h($item['title']); ?></td> <td><img src="../upload/<?=h( $item['filename'] );?>" alt="<?=h( $item['title'] );?>" height="<?=h( $item['height'] );?>" width="<?=h( $item['width'] );?>" /></td><td><?=h( $item['price'] );?> Tradebux</td> <td><input type="checkbox" value="<?=h( $item['picture_id'] );?>" name="pics[]" /> </td>
     </tr>
     <?php } ?>
+    </tbody>
   </table>			         
   <?php if ($coupons) { ?>
   <table>
@@ -47,19 +53,24 @@ our_header("cart");
     <?php } ?>
   </table>
   <?php } ?>
-  <input type="submit" value="Remove From Cart" />
+  <button type="submit" class="btn btn-default">Remove Selected From Cart</button>
 </form>
 <form action="<?=h( Cart::$ACTION_URL . '?action=addcoupon' ) ?>" method="POST">
-Enter Coupon Code: <input type="text" name="couponcode" /><br />
-<input type="submit" value="Submit Coupon" />
+<div class="form-group">
+  <label for="couponCode">Enter Coupon Code:</label>
+  <input type="text" id="couponCode" name="couponcode" />
+  <button type="submit" class="btn btn-default">Submit Coupon</button>
+</div>
 </form>
 
-<a href="<?=h( Cart::$CONFIRM_URL );?>">Continue to Confirmation</a>
+<a class="btn btn-default" href="<?=h( Cart::$CONFIRM_URL );?>">Continue to Confirmation</a>
 <?php } 
 else { ?>
 <h2> You don't have a cart! </h2>
 <p><a href="<?=h (Pictures::$RECENT_URL)?>">Go find some pictures!</a></p>
 <?php } ?>
+
+  </div>
 </div>
 <?php
 our_footer();

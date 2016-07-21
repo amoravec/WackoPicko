@@ -6,7 +6,6 @@ require_once("include/html_functions.php");
 
 <?php our_header("home"); ?>
 
-
 <div class="jumbotron">
   <h2>Welcome to <?php echo title(); ?></h2>
   <p>
@@ -38,13 +37,11 @@ require_once("include/html_functions.php");
       <div class="form-group">
         <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
         <label for="userfile">Check this file</label>
-        <label id="userfile" class="btn btn-default btn-file">Browse<input name="userfile" type="file" style="display: none;"/></label> 
+        <label class="btn btn-default btn-file">Browse<input name="userfile" id="userfile" type="file" style="display: none;"/></label>
       </div>
       <div class="form-group">
         <label for="filename">With this name</label>
-        <input id="filename" name="name" type="text" placeholder="mypic.jpg" /> 
-        <br /> 
-        <br />
+        <input id="filename" name="name" type="text" class="form-control" placeholder="mypic.jpg" /> 
       </div>
       <input type="submit" class="btn btn-default" value="Send File" />
       <br /> 
@@ -56,5 +53,19 @@ require_once("include/html_functions.php");
   </div>
 </div>
 
+<script>
+  function fullPathToFileName(fullPath) {
+    var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+    var filename = fullPath.substring(startIndex);
+    if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+        filename = filename.substring(1);
+    }
+    return filename;
+  }
+
+  $('input[id=userfile]').change(function() {
+   $('#filename').val(fullPathToFileName($(this).val()));
+  });
+</script>
 
 <?php our_footer(); ?>

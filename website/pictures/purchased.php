@@ -14,10 +14,11 @@ $pictures = Pictures::get_purchased_pictures($user['id']);
 ?>
 
 <?php our_header(); ?>
-<div class="column prepend-1 span-24 first last">
-<h2>You have purchased the following pictures: </h2>
+<div class="container">
+<div class="col-md-11">
+<h3>You have purchased the following pictures: </h3>
    <?php thumbnail_pic_list($pictures, "/pictures/highquality.php?key=highquality&"); ?>
 </div>
-
+</div>
 
 <?php our_footer(); ?>

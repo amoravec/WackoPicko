@@ -15,8 +15,9 @@ $similar_usernames = Users::similar_login($user['firstname'], True);
 
 <?php our_header() ; ?>
 
-<div class="column prepend-1 span-24 first last">
-<h2> Users with similar names to you, <?=h( $user['firstname'] )?> </h2>
+<div class="container">
+<div class="col-md-11">
+<h2> Users with similar names to you, <em><?=h( $user['firstname'] )?></em></h2>
 <ul>
    <?php if ( $similar_usernames ) { ?>
    <?php foreach( $similar_usernames as $u ) { ?>
@@ -31,6 +32,7 @@ $similar_usernames = Users::similar_login($user['firstname'], True);
 
    <?php } ?>
 </ul>
+</div>
 </div>
 
 <?php our_footer() ; ?>

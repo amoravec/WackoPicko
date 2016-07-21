@@ -17,8 +17,10 @@ if (isset($_POST['password']))
 <?php our_header("home"); ?>
 
 
-<div class="column prepend-1 span-24 first last">
-<h2>Check your password strength</h2>
+<div class="container">
+  <div class="col-md-11">
+
+<h3>Check your password strength</h3>
 <?php if ($checked) { ?>
 <p>
 The command "<?= h($command) ?>" was used to check if the password was in the dictionary.<br /> 
@@ -34,13 +36,15 @@ Password
 <?php }
 ?>
 <form action="<?=h( $_SERVER['PHP_SELF'] )?>" method="POST">
-   Password to check: <br>
-   <input type="password" name="password" /><br>
-   <input type="submit" value="Check!" />
+  <div class="form-group">
+    <label for="password">Password to check:</label> 
+    <input type="password" id="password" name="password" class="form-control" /><br>
+    <button type="submit" class="btn btn-default">Check!</button>
+  </div>
 </form>
 
 
-
+  </div>
 </div>
 
 

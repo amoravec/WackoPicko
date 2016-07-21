@@ -18,11 +18,13 @@ $pictures = Pictures::get_all_pictures_by_tag($_GET['query']);
 
 <?php our_header("", $_GET['query']); ?>
 
-<div class="column prepend-1 span-24 first last">
-<h2>Pictures that are tagged as '<?= $_GET['query']  ?>'</h2>
+<div class="container">
+<div class="col-md-11">
+  <h2>Pictures that are tagged as '<em><?= $_GET['query']  ?></em>'</h2>
 
    <?php thumbnail_pic_list($pictures); ?>
 
+</div>
 </div>
 
 

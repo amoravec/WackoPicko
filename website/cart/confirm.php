@@ -21,28 +21,32 @@ if (!$cart)
 $items = Cart::cart_items($cart['id']);
 $total = Cart::cart_total($cart['id']);
 $has_enough = $user['tradebux'];
-
 our_header("cart");
 ?>
 
-<div class="column prepend-1 span-22 first last">
-<h2>Confirm your purchase <?=h( $user['login'] ) ;?></h2>
+<div class="container">
+  <div class="col-md-11">
+
+<h3>Confirm your purchase <em><?=h( $user['login'] ) ;?></em></h3>
 
 <form action="<?=h( Cart::$ACTION_URL . '?action=purchase' ); ?>" method="POST">
-<table>
-<tr>
-<th>Pic name</th><th>High Quality Link</th><th>Price</th>
-</tr>
+<table class="table table-striped">
+  <thead>
+    <th>Pic name</th>
+    <th>High Quality Link</th>
+    <th>Price</th>
+   </thead>
+   <tbody>
    <?php foreach($items as $item) { ?>
     <tr><td><?=h($item['title']); ?></td> <td><?= high_quality_item_link($item); ?></td><td><?=h( $item['price'] );?> Tradebux</td></tr>
-
    <?php } ?>
+   </tbody>
 </table>
 
 <p>Total : <b><?= $total ?> Tradebux</b></p>
 
    <?php if ($has_enough) { ?>
-<input type="submit" value="Purchase" />
+<button type="submit" class="btn btn-default">Purchase</button>
 			    <?php }
 else { ?>
 
@@ -54,6 +58,8 @@ else { ?>
 
 
 </form>
+
+  </div>
 </div>
 
 <?php

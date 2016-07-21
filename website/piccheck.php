@@ -16,11 +16,14 @@ $name = $_POST['name'];
 <?php our_header("home"); ?>
 
 
-<div class="column prepend-1 span-24 first last">
-  <h2>Checking your file <?= $name ?></h2>
+<div class="container">
+  <div class="col-md-11">
+
+  <h3>Checking your file <em><?= $name ?></em></h3>
   <p>
     File is O.K. to upload!
   </p>
+  </div>
 </div>
 
 

@@ -10,9 +10,7 @@ function our_header($selected = "", $search_terms = "")
    ?>
 <html>
   <head>
-    <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
-    <!--[if IE]><link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
     <link rel="stylesheet" href="/css/stylings.css" type="text/css" media="screen">
 
     <link rel="stylesheet" href="/css/bootstrap.css" type="text/css">
@@ -85,7 +83,7 @@ function our_footer()
           <div class="container">
           <ul class="nav navbar-nav">
 	  <li><a href="/">Home</a></li>
-          <li><a href="/admin/index.php?page=login">Admin</a></li>
+          <!--<li><a href="/admin/index.php?page=login">Admin</a></li>-->
 	  <li><a href="/tos.php">Terms of Service</a></li>
           </ul>
 	</div>
@@ -143,7 +141,7 @@ function thumbnail_pic_list($pictures, $link_to = False)
 function high_quality_item_link($item)
 {
    $name = h($_SERVER['SERVER_NAME']);
-   $link = "http://{$name}/pictures/highquality.php?picid={$item['id']}&key=highquality";
+   $link = "http://{$name}/pictures/high_quality.php?picid={$item['id']}&key=high_quality";
    return "<a href='{$link}'>{$link}</a>"; 
 }
 
