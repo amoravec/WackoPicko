@@ -14,7 +14,9 @@ $user = Users::current_user();
 ?>
 
 <?php our_header("home"); ?>
-<div class="column prepend-1 span-24 first last">
+
+<div class="container">
+<div class="col-md-11 col-md-offset-1">
    <h2>Hello <?=h( $user['login'] )?>, you got <?=h($user['tradebux']) ?> Tradebuxs to spend!</h2>
 <p>Cool stuff to do:</p>
 <ul style="list-style-type:none;">
@@ -40,6 +42,7 @@ $user = Users::current_user();
 	    </EMBED>
 	    </OBJECT>
 	  </p>
+</div>
 </div>
 
 <?php our_footer(); ?>

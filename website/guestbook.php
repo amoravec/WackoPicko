@@ -24,7 +24,9 @@ $guestbook = Guestbook::get_all_guestbooks();
 
 <?php our_header("guestbook"); ?>
 
-<div class="column prepend-1 span-24 first last">
+<div class="container-fluid">
+<div class="col-md-11 col-md-offset-1">
+
 <h2>Guestbook</h2>
 <?php error_message(); ?>
 <h4>See what people are saying about us!</h4>
@@ -35,26 +37,30 @@ $guestbook = Guestbook::get_all_guestbooks();
      foreach ($guestbook as $guest)
      {
 	?>
+        <blockquote>
 	<p class="comment"><?= $guest["comment"] ?></p>
-	<p> - by <?=h( $guest["name"] ) ?> </p>
+	<footer> by <?=h( $guest["name"] ) ?> </footer>
+        </blockquote>
 	<?php
      } ?>
 <?php
    }
 ?>
 
-
-
-
 <form action="<?=h( Guestbook::$GUESTBOOK_URL )?>" method="POST">
-   Name: <br>
-   <input type="text" name="name" /><br>
-   Comment: <br>
-   <textarea id="comment-box" name="comment"></textarea> <br>
-   <input type="submit" value="Submit" />
+  <div class="form-group">
+    <label for="name">Username</label>
+    <input type="text" class="form-control" name="name" id="name" placeholder="Username">
+  </div>
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <textarea id="comment-box" style="resize:vertical; width:100%" name="comment" class="form-control" placeholder="Comment">
+    </textarea>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
 </form>
 
-
+</div>
 </div>
 <?php
    our_footer();

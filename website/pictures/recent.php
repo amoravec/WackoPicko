@@ -13,7 +13,9 @@ $pictures = Pictures::get_recent_pictures(10);
 
 <?php our_header("recent"); ?>
 
-<div class="column prepend-1 span-24 first last">
+<div class="container-fluid">
+<div class="col-md-11 col-md-offset-1">
+
 <h2>Recently uploaded pictures</h2>
 
 
@@ -21,7 +23,7 @@ $pictures = Pictures::get_recent_pictures(10);
 
 
 </div>
-
+</div>
 
 <?php our_footer(); ?>
 

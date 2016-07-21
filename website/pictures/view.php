@@ -39,88 +39,101 @@ if ($no_pic)
 
 <?php our_header(); ?>
 
-<div class="column prepend-1 span-14 first" >
-   <h2 id="image-title"><?=h( $pic['title'] )?> </h2>
-	<img id="image" src="../upload/<?=h( $pic['filename'] )?>.550.jpg" width="550" />
-	
-	<div class="column span-14 first last " id="comments">
-	  <div class="column span-14 first last">
-	    <h2 id="comment-title">Comments</h2>
-	  </div>
-   <?php if ($comments) {
-   foreach ($comments as $comment) {  ?>
-	  <div class="column prepend-1 span-12 first last">
-	    <p class="comment"><?= $comment['text'] ?></p>
-	  </div>
-	  <div class="column prepend-10 span-6 first last">
-	  - by <a href="<?= Users::$VIEW_URL ?>?userid=<?=h( $comment['user_id'] )?>"><?=h( $comment['login'] ) ?></a>
-	  </div>
-<?php
-   }
-}
+<div class="container" >
+<div class="col-md-12">
 
-else
-{
-?>	  
-   <div class="column prepend-1-span12 first last" style="padding-top:2em;padding-bottom:2em">
-      <h3 style="text-align:center">No comments yet...</h3>
+<div class="container">
+  <div class="row">
+    <h2 id="image-title"><?=h( $pic['title'] )?></h2>
+  </div>  
+  <div class="row">
+  <div class="col-md-6">
+    <div class="row">
+      <img id="image" src="../upload/<?=h( $pic['filename'] )?>.550.jpg" width="550" />
+    </div> 
+    <div class="row">
+      <blockquote class="blockquote" style="border-left: 0px;">
+       Uploaded on <?=h( date("F j, Y", $pic['created_on_unix']) )?>
+       <footer>
+       by <a href="<?= Users::$VIEW_URL ?>?userid=<?=h( $pic['user_id'] ) ?>"><?=h($pic['login']) ?></a>
+       </footer>
+       </blockquote>
+   </div>
+  </div>
+  <div class="col-md-5">
+   <div class="row">
+      <h2>Buy</h2>
+      <?=h( $pic['price'] )?> Tradebux
+      <?php $usr = Users::current_user(); if ($usr['id'] != $pic['user_id']) { ?>
+        <a href="<?=h( Cart::$ACTION_URL . '?action=add&picid=' . $pic['id'] );?>" class="btn btn-default">Add to Cart</a>
+      <?php } ?>
+   </div>
+
+    <div class="row">
+        <?php if ($related) { ?>                                          
+        <div class="">
+          <h2>Related</h2>
+          <?php foreach ($related as $p) { ?>
+            <div class="">
+              <a href="<?=h( Pictures::$VIEW_PIC_URL . "?picid=" . $p['id'] ) ?>"><img src="/upload/<?=h($p['filename']) ?>.128.jpg" width="128" class="thumbnail"/></a>
+              <p>by <a href="<?= Users::$VIEW_URL ?>?userid=<?=h( $p['user_id'] )?>"><?=h( $p['login'] )?></a></p>
+            </div>
+          <?php }?>
+        <?php } ?>
+        <?php if ($same) { ?>
+           <div class="">
+           <h2>Others by <a href="<?= Users::$VIEW_URL ?>?userid=<?=h( $pic['user_id'] )?>"><?=h($pic['login']) ?></a></h2>
+           <?php foreach ($same as $pic) { ?>
+             <div class="">
+               <a href="<?=h( Pictures::$VIEW_PIC_URL . "?picid=" . $pic['id'] ) ?>"><img src="/upload/<?=h($pic['filename']) ?>" width="128" class="thumbnail"/></a>
+             </div>
+           <?php }?>
+           </div>
+        <?php } ?>
+    </div>
+  </div>
+  </div>
+ 
+  <div class="row">
+    <div class="col-md-11 col-offset-1">
+      <div class="page-header">
+      <h2>Comments</h2>
       </div>
-<?php
-      }
-
-?>
-	  <div class="column prepend-1 span-12 first last" style="padding-bottom:2em;">
-	    <h3 style="text-align:center;padding-top:2em;">Add your comment</h3>
-	    <form action="<?= Comments::$PREVIEW_COMMENT_URL ?>" method="POST">
-	      <textarea id="comment-box" name="text"></textarea>
-	      <div class="column prepend-9 first last">
-		<input type="hidden" name="picid" value="<?=h( $pic['id'] )?>"/>
-		<input type="submit" value="Preview"/>
-
-	      </div>
-	    </form>
-	  </div>
-	  
-	</div>
+      <?php if ($comments) {
+         foreach ($comments as $comment) {  ?>
+          <blockquote style="border-left: 0px">
+	  <p class=""><?= $comment['text'] ?></p>
+	  <footer>
+	  by <a href="<?= Users::$VIEW_URL ?>?userid=<?=h( $comment['user_id'] )?>"><?=h( $comment['login'] ) ?></a>
+	  </footer>
+          </blockquote>
+      <?php }  
+      } else  { 
+      ?>	  
+      <div class="row">
+        <h4>No comments yet...</h4>
       </div>
-      
-      <div class="column prepend-2 append-1 span-6 last" style="padding-top:1em;" >
-   <h3 id="tradebux"><?=h( $pic['price'] )?> Tradebux<br />
-   <?php $usr = Users::current_user(); if ($usr['id'] != $pic['user_id']) { ?>
-	  <a href="<?=h( Cart::$ACTION_URL . '?action=add&picid=' . $pic['id'] );?>">Add to Cart</a>
-    <?php } ?>
-	</h3>
-	<h3 id="info-area">Uploaded on <?=h( date("F j, Y", $pic['created_on_unix']) )?><br />
-					  by <a href="<?= Users::$VIEW_URL ?>?userid=<?=h( $pic['user_id'] ) ?>"><?=h($pic['login']) ?></a>
-	</h3>  
-	<?php if ($related) { ?>					  
-	<div class="column span-6 first last" id="related">
-	  <div class="column span-6 first last">
-	    <h2 id="related-title">Related</h2>
-	  </div>
-      <?php foreach ($related as $p) { ?>
-	  <div class="column prepend-1 span-4 first last">
-	    <a href="<?=h( Pictures::$VIEW_PIC_URL . "?picid=" . $p['id'] ) ?>"><img src="/upload/<?=h($p['filename']) ?>.128.jpg" width="128" /></a>
-	 <p>by <a href="<?= Users::$VIEW_URL ?>?userid=<?=h( $p['user_id'] )?>"><?=h( $p['login'] )?></a></p>
-	  </div>
-<?php }?>
-	</div>
-	<?php } ?>
-	<?php if ($same) { ?>
-	<div class="column span-6 first last" id="same-upload">
-	  <div class="column span-6 first last">
-	    <h2 id="same-upload-title">Other by <a href="<?= Users::$VIEW_URL ?>?userid=<?=h( $pic['user_id'] )?>"><?=h($pic['login']) ?></a></h2>
-	  </div>
-
-      <?php foreach ($same as $pic) { ?>
-	  <div class="column prepend-1 span-4 first last" style="margin-bottom:2em;">
-	    <a href="<?=h( Pictures::$VIEW_PIC_URL . "?picid=" . $pic['id'] ) ?>"><img src="/upload/<?=h($pic['filename']) ?>" width="128" /></a>
-	  </div>
-<?php }?>
-	</div>
-	<?php } ?>
-	
+      <?php } ?>
+      <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Add your comment</h3>
+        </div>
+      <div class="panel-body">
+        <form action="<?= Comments::$PREVIEW_COMMENT_URL ?>" method="POST">
+          <textarea class="form-control" rows="5" style="width: 100%; resize: vertical;" id="comment-box" name="text"></textarea>
+          <input type="hidden" name="picid" value="<?=h( $pic['id'] )?>"/>
+          <br/>
+          <button type="submit" class="btn btn-default">Preview</button>
+          </form>       
       </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>	
+</div>
 
 
 

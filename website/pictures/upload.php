@@ -75,22 +75,44 @@ if (!$file_uploaded)
 
    our_header("upload");
 ?>
-<div class="column prepend-1 span-24 first last" >
+<div class="container-fluid">
+<div class="col-md-11 col-md-offset-1" >
 
 <h2> Upload a Picture! </h2>
 <?php error_message(); ?>
-<table style="width:320px">
-  <form enctype="multipart/form-data" action="<?=h( $_SERVER['PHP_SELF'] )?>" method="POST">
-  <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-       <tr><td>Tag :</td><td><input type="text" name="tag" style="" /></td></tr>
-       <tr><td>File Name :</td><td>  <input type="text" name="name" /></td></tr>
-       <tr><td>Title :</td><td> <input type="text" name="title" /></td></tr>
-       <tr><td>Price :</td><td>  <input type="text" name="price" /></td></tr>
-       <tr><td>File :</td><td>  <input type="file" name="pic" /></td></tr>
-       <tr><td><input type="submit" value="Upload File" /></td><td></td></tr>       
-</form>
-</table>
 
+<form enctype="multipart/form-data" action="<?=h( $_SERVER['PHP_SELF'] )?>" method="POST">
+  <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+  <div class="form-group">
+    <label for="tag">Tag</label>
+    <input type="text" class="form-control" id="tag" name="tag" placeholder="Tag">
+    <p class="help-block">A tag used to categorize your photo.</p>
+  </div>
+  <div class="form-group">
+    <label for="name">File Name</label>
+    <input type="text" class="form-control" id="name" placeholder="mypic.jpg">
+  </div>
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" placeholder="Title">
+    <p class="help-block">A title to list your photo.</p>
+  </div>
+  <div class="form-group">
+    <label for="price">Price</label>
+    <input type="text" id="price" name="price" placeholder="1">
+    <p class="help-block">The number of tradebux required for others to buy this photo.</p>
+  </div>
+  <div class="form-group">
+    <label for="picLabel">File</label>
+    <label id="picLabel" class="btn btn-default btn-file">
+      Browse
+      <input type="file" id="pic" name="pic" style="display: none;"/>
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Upload File</button>
+</form>
+
+</div>
 </div>
 <?php
     our_footer();

@@ -24,7 +24,7 @@ function our_header($selected = "", $search_terms = "")
 
     <title><?php echo title()?></title>
   </head>
-  <body>
+  <body style="padding-bottom: 70px">
     <div class="container" >
       <div class="masthead">
         <div class="row">
@@ -104,28 +104,28 @@ function thumbnail_pic_list($pictures, $link_to = False)
       $link_to = Pictures::$VIEW_PIC_URL."?";
    }
    ?>
-<div class="column prepend-1 span-21 first last" style="margin-bottom: 2em;">
+<div class="container-fluid">
+<div class="row">
       <?php if ($pictures) { ?>
-<ul class="thumbnail-pic-list">
 <?php
 
    for ($i = 0; $i < count($pictures); $i++)
    {
       $pic = $pictures[$i];
-      if ($i != 0 && (($i % 4) == 0))
+      if ($i != 0 && (($i % 6) == 0))
       {
 	 ?>
-</ul>
 </div>
-<div class="column prepend-1 span-21 first last" style="margin-bottom: 2em;">
-<ul class="thumbnail-pic-list">
+<div class="row">
 	 <?php
       }
 
 ?>
-<li>
-<a href="<?=h( $link_to . "picid=" . $pic['id'] ) ?>"><img src="/upload/<?=h( $pic['filename']) ?>.128_128.jpg" height="128" width="128" /></a>
-</li>
+<div class="col-md-2">
+<a href="<?=h( $link_to . "picid=" . $pic['id'] ) ?>">
+<img src="/upload/<?=h( $pic['filename']) ?>.128_128.jpg" class="thumbnail" height="128" width="128" />
+</a>
+</div>
 <?php
 
    }
@@ -136,7 +136,6 @@ function thumbnail_pic_list($pictures, $link_to = False)
 
 
 <?php } ?>
-</ul>
 </div>
 <?php
 }
